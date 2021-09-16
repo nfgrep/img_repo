@@ -157,3 +157,11 @@ I'd like to add tags to my images, just so I'm storing something more than just 
 I want an image to have many tags, and a tag to have many images. This will almost certainly require a join table. I'll leave this feature for later.
 
 Accidentally commited an empty commit, luckily I remembered that git amend was a thing 🤡.
+
+---
+
+Looks like I was able to get the barebones functionality done.  
+Some things for tomorrow:
+
+- add a name to each image
+- resize images in `image_tag`

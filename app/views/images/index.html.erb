@@ -1,1 +1,4 @@
-<%= render @images %>
+<%= link_to "Add Image", new_image_path %>
+<% @images.each do |image| %>
+    <%= link_to (image_tag(image.file)), image_path(image) %>
+<% end %>
