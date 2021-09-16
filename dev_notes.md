@@ -165,3 +165,19 @@ Some things for tomorrow:
 
 - add a name to each image
 - resize images in `image_tag`
+
+## Sept 16
+
+Ok, first thing I want to do is resize some things in the HTML so that their easier to work with.  
+Hmm, [looks like I `.variant` might be helpful!](https://dev.to/mikerogers0/resize-images-with-active-storage-in-rails-481n)  
+Based on some [comments in the rails source](https://github.com/rails/rails/blob/main/activestorage/app/models/active_storage/variant.rb), it also looks like I need `image_processing` in my gemfile.
+
+---
+
+I figured ImageMagick was a gem or was distributed with rails, but its actually just an external binary.  
+The variants of my images werent working (and I noticed that the size wasn't included in the metadata of the img in the db)  
+Lets see if a quick `brew install imagemagick` fixes things.  
+Yup, all fixed!  
+Hmm, external dependencies are annoying. I'll have to look into docker-izing this project if I have time.
+
+---
