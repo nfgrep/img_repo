@@ -1,4 +1,5 @@
 <%= link_to "Add Image", new_image_path %>
 <% @images.each do |image| %>
+    <p><%= image.title %></p>
     <%= link_to (render "img_partial", image: image), image_path(image) %>
 <% end %>

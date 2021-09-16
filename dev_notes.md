@@ -181,3 +181,21 @@ Yup, all fixed!
 Hmm, external dependencies are annoying. I'll have to look into docker-izing this project if I have time.
 
 ---
+
+Ok with images a little more manageable, lets add some titles to these images.  
+Hmm, the title is nil!
+
+```
+irb(main):007:0> Image.last
+  Image Load (0.2ms)  SELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT ?  [["LIMIT", 1]]
+=>
+#<Image:0x00007fe0d55bc350
+ id: 12,
+ created_at: Thu, 16 Sep 2021 16:47:08.489519000 UTC +00:00,
+ updated_at: Thu, 16 Sep 2021 16:47:08.508189000 UTC +00:00,
+ title: nil>
+```
+
+Ah, I forgot to update the image_params!  
+`params.require(:image).permit(:file)` -> `params.require(:image).permit(:file, :title)`  
+Tada!
