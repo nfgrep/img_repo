@@ -154,8 +154,6 @@ The `has_one_attached` method seems to be what actually associates the model wit
 Dude... theres a built-in field for uploading files in form data: `file_field` . So sick.
 
 I'd like to add tags to my images, just so I'm storing something more than just the image data (and some simple searches/filters can be done).  
-I want an image to have many tags, and a tag to have many images. This will almost certainly require a join table. I'll leave this feature for later.  
+I want an image to have many tags, and a tag to have many images. This will almost certainly require a join table. I'll leave this feature for later.
 
-Accidentally commited an empty commit, luckily I remembered that git amend was a thing 🤡.  
-
-
+Accidentally commited an empty commit, luckily I remembered that git amend was a thing 🤡.
