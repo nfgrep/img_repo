@@ -199,3 +199,10 @@ irb(main):007:0> Image.last
 Ah, I forgot to update the image_params!  
 `params.require(:image).permit(:file)` -> `params.require(:image).permit(:file, :title)`  
 Tada!
+
+---
+
+Before I get onto building some search functionality, I want to do some simple validation.
+
+While trying to validate the size of the image, `file.byte_size` is yeilding something smaller than I expect.  
+I suspect this is because imagemagick is resizing my images before storing them. I'll try changing the `variant`.
