@@ -1,0 +1,5 @@
+<%= form_with model: @image do |form| %>
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+    <%= form.submit %>
+<% end %>
