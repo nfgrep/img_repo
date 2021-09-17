@@ -259,3 +259,13 @@ Just rememered that rails runs the fixtures yaml through the ERB, so I can do st
 ```
 
 Kinda rad.
+
+---
+
+Trying to test some controller stuff, but generating correct data for active storage with fixtures is tricky.  
+A simple `get images_url` causes things to go haywire because the test DB isnt correctly populated with fixture data.  
+I noticed that uploading an image through the typical means produces 2 images in storage.  
+I suspect that this is the original and the variant image.  
+Unsure how I can create fixtures for variants.
+
+Ah, it seems this is a non issue if I [account for it in the view](https://github.com/gorails-screencasts/testing-activestorage-uploads/blob/a11b11263e46943ad09168097b0834208182d8f9/app/views/photos/show.html.erb#L5).

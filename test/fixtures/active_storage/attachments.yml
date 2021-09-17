@@ -1,17 +1,5 @@
 has_file_attachment:
   name: file
   record_type: Image
-  record_id: <%= ActiveRecord::FixtureSet.identify(:has_file) %>
+  record_id: <%= ActiveRecord::FixtureSet.identify(:img) %>
   blob_id: <%= ActiveRecord::FixtureSet.identify(:image_file_blob) %>
-
-has_file_and_title_attachment:
-  name: file
-  record_type: Image
-  record_id: <%= ActiveRecord::FixtureSet.identify(:has_title_and_file) %>
-  blob_id: <%= ActiveRecord::FixtureSet.identify(:image_file_blob) %>
-
-has_large_file_attachment:
-  name: file
-  record_type: Image
-  record_id: <%= ActiveRecord::FixtureSet.identify(:has_large_file) %>
-  blob_id: <%= ActiveRecord::FixtureSet.identify(:large_image_file_blob) %>

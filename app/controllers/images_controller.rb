@@ -1,16 +1,21 @@
 class ImagesController < ApplicationController
+    
+    # GET
     def index
         @images = Image.all
     end
 
+    # GET
     def show
         @image = Image.find(params[:id])
     end
 
+    # GET
     def new
         @image = Image.new
     end
 
+    # POST
     def create
         @image = Image.new(image_params)
         if @image.save
@@ -20,6 +25,7 @@ class ImagesController < ApplicationController
         end
     end
 
+    # DELETE
     def destroy
         @image = Image.find(params[:id])
         @image.file.purge_later

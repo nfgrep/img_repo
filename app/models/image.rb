@@ -1,7 +1,5 @@
 class Image < ApplicationRecord
-    has_one_attached :file do |attachable|
-        attachable.variant :thumb, resize: "100x100"
-    end
+    has_one_attached :file
 
     validates :title, presence: true, length: { minimum: 3, maximum: 30 }
     validates :file, presence: true

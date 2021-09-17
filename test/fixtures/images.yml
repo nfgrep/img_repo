@@ -1,13 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-has_title_and_file:
+img:
   title: "yabba"
 
-has_title:
-  title: "dabba"
-
-has_file: {}
-
-has_large_file: {}
-
-has_no_file: {}
+empty_img: {}
