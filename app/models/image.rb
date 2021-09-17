@@ -1,4 +1,6 @@
 class Image < ApplicationRecord
+    include Searchable
+
     has_one_attached :file
 
     validates :title, presence: true, length: { minimum: 3, maximum: 30 }

@@ -1,0 +1,28 @@
+<h1>Image Search</h1>
+
+<%= form_for search_path, method: :get do |form| %>
+  <p>
+    <%= form.label :query %>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<% if params[:query] && @results.blank? %>
+  <p>No results found for <%= params[:query] %></p>
+<% end %>
+
+<% @results.each do |model, records| %>
+  <h3><%= model.titleize %></h3>
+
+  <ul>
+    <% records.each do |record| %>
+      <% record_link = "#{model}/#{record['_id']}" %>
+      <li>
+        <%puts "--------\n", record["_source"]["title"], "\n--------" %>
+        <%= link_to ("#{record["_source"]["title"]} #{record_link}"), record_link %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>

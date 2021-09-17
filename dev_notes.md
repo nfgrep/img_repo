@@ -269,3 +269,14 @@ I suspect that this is the original and the variant image.
 Unsure how I can create fixtures for variants.
 
 Ah, it seems this is a non issue if I [account for it in the view](https://github.com/gorails-screencasts/testing-activestorage-uploads/blob/a11b11263e46943ad09168097b0834208182d8f9/app/views/photos/show.html.erb#L5).
+
+---
+
+With testing done (for now), I wan't to focus on getting some basic search working.  
+Fuzzy stuff is hard, so I'll try and use elasticsearch.  
+This may all go terribly wrong, so I'll try this on a separate branch.
+
+---
+
+Got some basic string-equivalence searching done with elasticsearch!  
+Now... how to make it fuzzy.
