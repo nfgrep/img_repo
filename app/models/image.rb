@@ -1,14 +1,20 @@
 class Image < ApplicationRecord
-    has_one_attached :file
+    has_one_attached :file do |attachable|
+        attachable.variant :thumb, resize: "100x100"
+    end
 
-    validates :title, presence: true, length: { minimum: 3, maximum: 30}
+    validates :title, presence: true, length: { minimum: 3, maximum: 30 }
     validates :file, presence: true
 
     validate :image_smallerthan_2M
 
     def image_smallerthan_2M
+
+        return unless file.attached?
+
         if file.byte_size > 2.megabytes
             errors.add(:file, "size larger than 2M maximum")
         end
+
     end
 end

@@ -206,3 +206,56 @@ Before I get onto building some search functionality, I want to do some simple v
 
 While trying to validate the size of the image, `file.byte_size` is yeilding something smaller than I expect.  
 I suspect this is because imagemagick is resizing my images before storing them. I'll try changing the `variant`.
+
+---
+
+With some basic validation done its on to some tests!  
+Hmm, getting an error:
+
+```
+/Users/nfg/.gem/gems/bootsnap-1.8.1/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:34:in `require': cannot load such file -- rexml/document (LoadError)
+```
+
+This is the second time I've seen this bootsnap lib file get angry about something.  
+Last time it wasn't bootsnaps fault, so I'll assume the same here.  
+Looks like it's having some issues loading a file. Something about rexml?  
+Ah, appears like this is a [known issue](https://github.com/rails/rails/issues/41502#issuecomment-864739940) with selenium.  
+Looks like pinning selenium to `4.0.0.rc1` and running `bundle update` has fixed the issue.
+
+---
+
+To do some tests, I need a way to fake some active storage data.  
+A google search yeilds [some answers](https://stackoverflow.com/questions/50453596/activestorage-fixtures-attachments).  
+Apparently I can create fixtures for both attachments and blobs and use those.  
+What's nice about that is the fact that information like image type and size are stored in the blob, so I can do some tests without referencing an actual stored image!
+
+Looks like I have the correct active storage data being generated with fixtures.  
+When testing I had to check the if the actual `image.file.blob` was nil. `image.file` seems to just return the active storage attachment (for which one exists, presumably due to `has_one_attached`)
+
+---
+
+Looking into how to test models, [this example](https://github.com/gorails-screencasts/testing-rails-validations/blob/b3d5f3f2cd7b75bcee31f7fc7899e76d799f4254/test/models/rating_test.rb#L3-L10) details how to test the validations.
+
+## Sept 17
+
+Gotta test some models today!
+
+`.create` instantiates an object, validates it, and saves it to DB. `.new` just instantiates it.  
+Calling `.valid?` also triggers validations!
+
+I'd like to attach a test-file to a new instance of an image record for some test data.  
+I'm looking for an `attachable` according to the [docs](https://github.com/rails/rails/blob/83217025a171593547d1268651b446d3533e2019/activestorage/lib/active_storage/attached/one.rb#L29).  
+Hmm, I can't find an explaination of what an attachable is. Luckily the [rails source](https://github.com/rails/rails/blob/83217025a171593547d1268651b446d3533e2019/activestorage/lib/active_storage/attached/one.rb#L26-L29) gives some clues.
+
+Hmm, I might just use `File.open` instead 😈.  
+Honestly a little gross, but it should work pretty good for now.  
+I wonder if I can pull an image from the web and use it as test data 🤔.
+
+Just rememered that rails runs the fixtures yaml through the ERB, so I can do stuff like this:
+
+```
+  byte_size: <%= File.size('test/fixtures/files/large.jpg') %>
+  checksum: <%= Digest::MD5.file('test/fixtures/files/large.jpg').base64digest %>
+```
+
+Kinda rad.

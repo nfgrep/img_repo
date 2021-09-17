@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  file: 
+has_title_and_file:
+  title: "yabba"
 
-two:
-  file: 
+has_title:
+  title: "dabba"
+
+has_file: {}
+
+has_large_file: {}
+
+has_no_file: {}
