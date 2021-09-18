@@ -1,0 +1,17 @@
+<h1>Image Search</h1>
+<%= link_to 'Home', root_path%>
+<%= form_with url: search_images_path, method: :get do |form| %>
+    <%= form.label :query %>
+    <%= form.text_field :query %>
+
+    <%= form.submit 'search' %>
+<% end %>
+
+<% if @results %>
+    <% @results.each do |result| %>
+        <p><%= result.title %></p>
+        <%= link_to (image_tag result.file.variant(resize_to_limit: [500, 500] ) if result.file.attached?), result %>
+    <% end %>
+<% else %>
+    <h2>No results</h2>
+<% end %>

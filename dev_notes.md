@@ -269,3 +269,39 @@ I suspect that this is the original and the variant image.
 Unsure how I can create fixtures for variants.
 
 Ah, it seems this is a non issue if I [account for it in the view](https://github.com/gorails-screencasts/testing-activestorage-uploads/blob/a11b11263e46943ad09168097b0834208182d8f9/app/views/photos/show.html.erb#L5).
+
+---
+
+With testing done (for now), I wan't to focus on getting some basic search working.  
+Fuzzy stuff is hard, so I'll try and use elasticsearch.  
+This may all go terribly wrong, so I'll try this on a separate branch.
+
+---
+
+Got some basic string-equivalence searching done with elasticsearch!  
+Hmm, for some reason it's not fuzzy be default.  
+Elasticsearch was a long-shot anyway. Not enough time to figure this out, will switch back to some basic fuzzy search.
+
+---
+
+Rails routes [collections](https://guides.rubyonrails.org/routing.html#adding-collection-routes) seems to be what I'm looking for to generate an `images/search` route.
+
+---
+
+Going to try to use the [fuzzy-string-search](https://github.com/kiyoka/fuzzy-string-match) gem to make the search a little better.
+
+Got something basic setup for fuzzy searching:
+
+```
+@results = Array.new
+if params[:query]
+	Image.all.each do |image|
+		if @jarow.getDistance(image.title, params[:query]) > 0.5
+			@results.push(image)
+		end
+	end
+end
+```
+
+Though it really doesn't look like it would scale well with that iteration 😬.  
+This kind of iteration should probably be done as close to the DB as possible for performance.

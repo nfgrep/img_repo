@@ -15,8 +15,12 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get search" do
+    get search_images_path
+    assert_response :success
+  end
+
   test "should create image" do
-    # asserts that the number of images has increased after creation
     assert_difference('Image.count') do
       post images_url, params: { image: { title: "woah", file: fixture_file_upload("test.png", "image/png") } }
     end
