@@ -7,30 +7,34 @@ class ImagesController < ApplicationController
 
     def show
         @image = Image.find(params[:id])
-        render json: @image
+        redirect_to url_for(@image.file)
     end
 
     def create
-        @image = Image.create(image_params)
-        render json: @image
+        @image = Image.new(image_params)
+        if @image.save
+            render json: @image
+        else
+            render json: @image.errors
+        end
     end
 
     def destroy
         @image = Image.find(params[:id])
+        @image.file.purge_later
         @image.delete
-        @image.pur
-        
         render json: @image
     end
 
     def search
-        # this wont scale but hey, I got 3 days left
-        # Image.search(params[:query])
+        render json: Image.search(params[:query])
     end
 
     private
     def image_params
-        params.require(:image).permit(:file, :title)
+        params.require(:file)
+        params.require(:title)
+        params.permit(:file, :title)
     end
 
 end
