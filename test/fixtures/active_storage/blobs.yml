@@ -1,0 +1,7 @@
+image_file_blob:
+  key: "1234"
+  filename: "test.png"
+  content_type: "image/png"
+  byte_size: <%= File.size('test/fixtures/files/test.png') %>
+  checksum: <%= Digest::MD5.file('test/fixtures/files/test.png').base64digest %>
+  service_name: local
