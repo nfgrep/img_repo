@@ -17,9 +17,9 @@ class Image < ApplicationRecord
     @fuzzymatcher = FuzzyStringMatch::JaroWinkler.create( :native )
     # this probably wont scale
     Image.all.each do |image|
-        if @fuzzymatcher.getDistance(image.title, query) > 0.4
-            results.push(image)
-        end
+      if @fuzzymatcher.getDistance(image.title, query) > 0.4
+          results.push(image)
+      end
     end
     return results
   end
