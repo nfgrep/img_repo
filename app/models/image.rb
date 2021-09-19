@@ -11,7 +11,7 @@ class Image < ApplicationRecord
 
   ACCEPTED_MIME_TYPE = Set['image/png', 'image/jpeg']
 
-  def self.search(query)
+  def self.search query 
     results = Array.new
     # GC dont fail me now...
     @fuzzymatcher = FuzzyStringMatch::JaroWinkler.create( :native )
@@ -22,6 +22,14 @@ class Image < ApplicationRecord
       end
     end
     return results
+  end
+
+  def get_size size
+    if size.to_i != 0
+      return file.variant(resize_to_limit: [size, size])
+    else
+      return file
+    end
   end
 
   private

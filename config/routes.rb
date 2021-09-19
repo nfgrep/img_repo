@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :images do
-    collection do
-      get 'search/:query', :to => "images#search", as: 'search'
-    end
+    get 'search/:query', :on => :collection, :action => 'search'
+    get ':size', :on => :member, :action => 'show'
   end  
 end

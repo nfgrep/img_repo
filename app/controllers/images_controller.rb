@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
 
     def show
         @image = Image.find(params[:id])
-        redirect_to url_for(@image.file)
+        redirect_to url_for(@image.get_size(params[:size]))
     end
 
     def create
