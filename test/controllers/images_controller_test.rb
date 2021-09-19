@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "test_helper"
 
 class ImagesControllerTest < ActionDispatch::IntegrationTest
@@ -16,16 +17,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create image" do
-    assert_difference('Image.count') do
+    assert_difference("Image.count") do
       post images_url, params: { title: "test!", file: fixture_file_upload("test.png", "image/png") }
     end
     assert_response :success
-    assert_equal "test!", @response.parsed_body['title']
+    assert_equal "test!", @response.parsed_body["title"]
   end
 
   test "should redirect to image file" do
     get image_url(@image)
     assert_redirected_to url_for(@image.file)
   end
-
 end
