@@ -28,5 +28,10 @@ class ImageTest < ActiveSupport::TestCase
     assert_not_empty image.errors[:file]
   end
 
+  test "image size not number" do
+    image = Image.new()
+    resized = image.get_size('ff')
+    assert_equal resized, image.file
+  end
 
 end
