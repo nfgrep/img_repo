@@ -5,20 +5,24 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+- Ruby version
 
-* System dependencies
+  - 3.0.2
 
-* Configuration
+- System dependencies
 
-* Database creation
+  - imagemagick: 7.1.0-7
 
-* Database initialization
+- Configuration
 
-* How to run the test suite
+- Database creation
 
-* Services (job queues, cache servers, search engines, etc.)
+- Database initialization
 
-* Deployment instructions
+- How to run the test suite
 
-* ...
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...
