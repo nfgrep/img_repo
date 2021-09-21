@@ -37,6 +37,8 @@ This project is a submission to the 2021 Winter internship application at Shopif
    docker run -p 3000:3000 img_repo
    ```
 
+The server should now be available at localhost:3000
+
 ## Usage
 
 ### Upload an image
