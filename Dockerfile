@@ -9,7 +9,7 @@ RUN gem install rails
 
 # RUN git clone https://github.com/nfgrep/img_repo
 
-COPY img_repo .
+COPY . img_repo
 
 WORKDIR img_repo
 
