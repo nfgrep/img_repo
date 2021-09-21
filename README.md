@@ -13,31 +13,33 @@ This project is a submission to the 2021 Winter internship application at Shopif
 
 ## Setup
 
-1. Download a copy of this repository, either via the [.zip download](https://github.com/nfgrep/img_repo/archive/refs/heads/main.zip) or `git clone`:
+1. Download a copy of this repository, either via the [.zip download](https://github.com/nfgrep/img_repo/archive/refs/heads/main.zip) or `git clone`
 
    ```
    git clone https://github.com/nfgrep/img_repo
    ```
 
-2. Open a terminal and navigate to the root of the project:
+2. Open a terminal and navigate to the root of the project
 
    ```
    cd img_repo
    ```
 
-3. Build the docker image:
+3. Build the docker image
 
    ```
    docker build . -t img_repo
    ```
 
-4. Run the docker image with port 3000 exposed:
+4. Run the docker image with port 3000 exposed
 
    ```
    docker run -p 3000:3000 img_repo
    ```
 
-The server should now be available at localhost:3000
+5. Done! The server should now be available at localhost:3000
+
+   ![](demo-img/first-test.png)
 
 ## Usage
 
