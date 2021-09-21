@@ -25,33 +25,16 @@ This project is a submission to the 2021 Winter internship application at Shopif
    cd img_repo
    ```
 
-3. Ensure you are using ruby version 3.0.2:
+3. Build the docker image:
 
    ```
-   ruby --version
+   docker build . -t img_repo
    ```
 
-4. Install image magick, either from the [official website](https://imagemagick.org/script/download.php) or with homebrew:
+4. Run the docker image with port 3000 exposed:
 
    ```
-   brew install imagemagick
-   ```
-
-5. Install dependencies with bundler:
-
-   ```
-   bundle install
-   ```
-
-6. Migrate the db:
-
-   ```
-   rails db:migrate
-   ```
-
-7. Run the server:
-   ```
-   rails s
+   docker run -p 3000:3000 img_repo
    ```
 
 ## Usage
