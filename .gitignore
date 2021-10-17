@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Local machine-specific files
-.prettierrd
+.prettierrc
 .DS_Store
 
 # Ignore bundler config.
