@@ -12,11 +12,7 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
-    if @image.save
-      render(json: @image)
-    else
-      render(json: @image.errors)
-    end
+    @image.save ? render(json: @image) : render(json: @image.errors)
   end
 
   def destroy

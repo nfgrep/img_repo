@@ -12,18 +12,20 @@ class Image < ApplicationRecord
 
   ACCEPTED_MIME_TYPE = Set['image/png', 'image/jpeg']
 
-  @fuzzymatcher = FuzzyStringMatch::JaroWinkler.create(:native)
-
   def self.search(query)
     results = []
 
+    # GC, dont fail me now
+    @fuzzymatcher = FuzzyStringMatch::JaroWinkler.create(:native)
+
     # this probably wont scale
     Image.all.each do |image|
-      results.push(image) if @fuzzymatcher.getDistance(image.title, query) > 0.4
+      results.push(image) if @fuzzymatcher.getDistance(image.title, query) > 0.4 # 0.4 should be a var
     end
     results
   end
 
+  # not a good name
   def get_size(size)
     size.to_i != 0 ? file.variant(resize_to_fit: [size, size]) : file
   end
